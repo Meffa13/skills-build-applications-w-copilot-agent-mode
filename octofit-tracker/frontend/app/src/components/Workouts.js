@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 const Workouts = () => {
   const [workouts, setWorkouts] = useState([]);
@@ -17,13 +18,34 @@ const Workouts = () => {
   }, [endpoint]);
 
   return (
-    <div>
-      <h2>Workouts</h2>
-      <ul>
-        {workouts.map((workout, idx) => (
-          <li key={workout.id || idx}>{JSON.stringify(workout)}</li>
-        ))}
-      </ul>
+    <div className="container mt-4">
+      <div className="card shadow-sm">
+        <div className="card-body">
+          <h2 className="card-title text-center mb-4">Workouts</h2>
+          <div className="table-responsive">
+            <table className="table table-striped table-bordered">
+              <thead className="table-dark">
+                <tr>
+                  <th scope="col">ID</th>
+                  <th scope="col">Type</th>
+                  <th scope="col">Duration</th>
+                  <th scope="col">Calories</th>
+                </tr>
+              </thead>
+              <tbody>
+                {workouts.map((workout, idx) => (
+                  <tr key={workout.id || idx}>
+                    <td>{workout.id}</td>
+                    <td>{workout.type}</td>
+                    <td>{workout.duration}</td>
+                    <td>{workout.calories}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };
